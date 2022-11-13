@@ -23,3 +23,9 @@ Luego
 ```bash
 npm install
 ```
+
+## Para levantar el Proyecto
+
+```bash
+npm start
+```
