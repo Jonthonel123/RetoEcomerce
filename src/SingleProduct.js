@@ -43,58 +43,58 @@ const SingleProduct = () => {
       <PageNavigation title={name} />
       <Container className="container">
         <div className="grid grid-two-column">
-          {/* product Images  */}
+          {/* Lista de imagen */}
           <div className="product_images">
             <MyImage imgs={image} />
           </div>
 
-          {/* product dAta  */}
+          {/* Datos del producto  */}
           <div className="product-data">
             <h2>{name}</h2>
             <Star stars={stars} reviews={reviews} />
 
             <p className="product-data-price">
-              MRP:
+              Pre.Antes:
               <del>
                 <FormatPrice price={price + 250000} />
               </del>
             </p>
             <p className="product-data-price product-data-real-price">
-              Deal of the Day: <FormatPrice price={price} />
+              Oferta por hoy: <FormatPrice price={price} />
             </p>
             <p>{description}</p>
             <div className="product-data-warranty">
               <div className="product-warranty-data">
                 <TbTruckDelivery className="warranty-icon" />
-                <p>Free Delivery</p>
+                <p>Entrega Gratis</p>
               </div>
 
               <div className="product-warranty-data">
                 <TbReplace className="warranty-icon" />
-                <p>30 Days Replacement</p>
+                <p>Delver producto hasta 30 días</p>
               </div>
 
               <div className="product-warranty-data">
                 <TbTruckDelivery className="warranty-icon" />
-                <p>Thapa Delivered </p>
+                <p>Delivery </p>
               </div>
 
               <div className="product-warranty-data">
                 <MdSecurity className="warranty-icon" />
-                <p>2 Year Warranty </p>
+                <p>2 años de garantia </p>
               </div>
             </div>
 
             <div className="product-data-info">
               <p>
-                Available:
+                Disponible:
                 <span> {stock > 0 ? "In Stock" : "Not Available"}</span>
               </p>
               <p>
                 ID : <span> {id} </span>
               </p>
               <p>
-                Brand :<span> {company} </span>
+                Marca :<span> {company} </span>
               </p>
             </div>
             <hr />

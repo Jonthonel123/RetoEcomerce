@@ -27,6 +27,14 @@ const CartProvider = ({ children }) => {
     dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, product } });
   };
 
+  // aumentar productos
+  const setDecrease = (id) => {
+    dispatch({ type: "SET_DECREMENT", payload: id });
+  };
+  const setIncrement = (id) => {
+    dispatch({ type: "SET_INCREMENT", payload: id });
+  };
+
   const removeItem = (id) => {
     dispatch({ type: "REMOVE_ITEM", payload: id });
   };
@@ -40,12 +48,21 @@ const CartProvider = ({ children }) => {
     dispatch({ type: "COUNT_LIST_CART" });
   };
 
-  // useEffect(() => {
-  //   localStorage.setItem("CompuPlaza", JSON.stringify(state.cart));
-  // }, [state.cart]);
+  useEffect(() => {
+    dispatch({ type: "CART_COUNT_ITEM" });
+    localStorage.setItem("CompuPlaza", JSON.stringify(state.cart));
+  }, [state.cart]);
   return (
     <CartContext.Provider
-      value={{ ...state, addToCart, removeItem, clearCart, countListProduct }}
+      value={{
+        ...state,
+        addToCart,
+        removeItem,
+        clearCart,
+        countListProduct,
+        setDecrease,
+        setIncrement,
+      }}
     >
       {children}
     </CartContext.Provider>

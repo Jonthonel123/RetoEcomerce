@@ -28,7 +28,7 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  // segunda API
+  // segunda por id
   const getSingleProduct = async (url) => {
     dispatch({ type: "SET_SINGLE_LOADING" });
     try {

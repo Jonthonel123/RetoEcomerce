@@ -1,3 +1,5 @@
+import { act } from "react-dom/test-utils";
+
 const cartReducer = (state, action) => {
   if (action.type === "ADD_TO_CART") {
     let { id, color, amount, product } = action.payload;
@@ -43,6 +45,43 @@ const cartReducer = (state, action) => {
       };
     }
   }
+
+  // Incrementar y disminuir
+  if (action.type === "SET_DECREMENT") {
+    let updatedProduct = state.cart.map((curElem) => {
+      if (curElem.id === action.payload) {
+        let decAmout = curElem.amount - 1;
+        if (decAmout <= 0) {
+          decAmout = 1;
+        }
+        return {
+          ...curElem,
+          amount: decAmout,
+        };
+      } else {
+        return curElem;
+      }
+    });
+    return { ...state, cart: updatedProduct };
+  }
+  if (action.type === "SET_INCREMENT") {
+    let updatedProduct = state.cart.map((curElem) => {
+      if (curElem.id === action.payload) {
+        let incAmount = curElem.amount + 1;
+        if (incAmount >= curElem.max) {
+          incAmount = curElem.max;
+        }
+        return {
+          ...curElem,
+          amount: incAmount,
+        };
+      } else {
+        return curElem;
+      }
+    });
+    return { ...state, cart: updatedProduct };
+  }
+
   if (action.type === "REMOVE_ITEM") {
     let updatedCart = state.cart.filter(
       (curItem) => curItem.id !== action.payload
@@ -56,6 +95,17 @@ const cartReducer = (state, action) => {
     return {
       ...state,
       cart: [],
+    };
+  }
+  if (action.type === "CART_COUNT_ITEM") {
+    let updateItemaval = state.cart.reduce((initialVal, curElem) => {
+      let { amount } = curElem;
+      initialVal = initialVal + amount;
+      return initialVal;
+    }, 0);
+    return {
+      ...state,
+      total_item: updateItemaval,
     };
   }
 
